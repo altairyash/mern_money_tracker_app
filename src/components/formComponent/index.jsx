@@ -1,16 +1,18 @@
 import React from "react";
-
+import "./formComponent.css";
 function FormComponent() {
     return (
         <>
-            <div>
+            <div className="form-wrapper">
                 <h1>$200.<span>00</span></h1>
                 <form className="form-component">
                     <div className="details">
                         <input type="number" placeholder={"amount"} />
-                        <input type="text" placeholder={"description"} />
+                        <input type="datetime-local" placeholder={""} />
                     </div>
-                    <input type="datetime-local" placeholder={""} />
+                    <input type="text" placeholder={"name"} />
+                    <input type="text" placeholder={"description"} />
+                    <button>add new transaction</button>
                 </form>
             </div>
         </>
