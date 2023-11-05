@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./formComponent.css";
 import { transaction_endpoint } from '../../utils/appConstants';
 import Loader from "../loader";
-function FormComponent({balance,setAddTransaction}) {
+import { useGlobalState } from '../../context/GlobalStateContext';
+function FormComponent() {
+    const { setAddTransaction, balance } = useGlobalState();
     const [amount, setAmount] = useState(0)
     const [date, setDate] = useState('')
     const [name, setName] = useState('')
@@ -20,7 +22,7 @@ function FormComponent({balance,setAddTransaction}) {
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({ amount: amount, date: date, name: name, description: description }),
         }).then(response => {
-            response.json().then(json => {   
+            response.json().then(json => {
                 setAddTransaction(false)
                 console.log("result", json)
                 setAmount('')
@@ -35,16 +37,16 @@ function FormComponent({balance,setAddTransaction}) {
     const cents = balance?.split('.')[1]
     return (
         <>
-            {loading && <Loader/>}
+            {loading && <Loader />}
             <div className="form-wrapper">
                 <form
                     className="form-component"
                     onSubmit={addNewTransaction}
                 >
-                    <h1>${dollars}.<span>{cents}</span></h1>
+                    <h1><span>${dollars}.<span>{cents}</span></span></h1>
                     <div className="details">
                         <input type="number"
-                            placeholder={"amount"}
+                            placeholder={"ex : +500 -300"}
                             value={amount}
                             onChange={e => setAmount(e.target.value)}
                         />
@@ -55,7 +57,7 @@ function FormComponent({balance,setAddTransaction}) {
                         />
                     </div>
                     <input type="text"
-                        placeholder={"name"}
+                        placeholder={"title"}
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
@@ -64,7 +66,7 @@ function FormComponent({balance,setAddTransaction}) {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
-                    <button>add new transaction</button>
+                    <button><span>add new transaction</span></button>
                 </form>
             </div>
         </>
