@@ -1,0 +1,45 @@
+.loader-wrapper {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(116, 19, 235, 0.479);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 4;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader-icon {
+    height: 100px;
+    width: 100px;
+}
+
+.loader-icon img {
+    height: 100%;
+    width: 100%;
+    animation: rotate 1s infinite ease-in-out;
+}
+
+
+.rotating-image {
+    width: 200px;
+    /* Adjust the size as needed */
+    height: 200px;
+    /* Adjust the size as needed */
+    animation: rotate 5s infinite linear;
+    /* Adjust the duration and timing function as needed */
+}

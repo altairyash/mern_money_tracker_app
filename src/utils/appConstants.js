@@ -1,0 +1,1 @@
+export const transaction_endpoint = "transaction";
